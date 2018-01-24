@@ -1,6 +1,6 @@
 declare module "react-popper" {
   import * as React from "react";
-  import PopperJS from "popper.js";
+  import * as PopperJS from "popper.js";
 
   interface IRestProps {
     restProps: {
@@ -27,16 +27,12 @@ declare module "react-popper" {
     popperProps: {
       ref: (ref: HTMLElement) => void;
       style: React.CSSProperties;
-      ["data-placement"]: PopperJS.Placement;
+      ["data-placement"]: Popper.Placement;
     };
-    restProps: IRestProps;
     scheduleUpdate: (() => void) | undefined;
   }
 
-  interface IPopperProps extends IComponentProps<IPopperChildrenProps> {
-    eventsEnabled?: boolean;
-    modifiers?: PopperJS.Modifiers;
-    placement?: PopperJS.Placement;
+  interface IPopperProps extends Popper.PopperOptions, IComponentProps<IPopperChildrenProps> {
   }
 
   class Popper extends React.Component<IPopperProps, {}> {

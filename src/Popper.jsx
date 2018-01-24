@@ -22,9 +22,6 @@ class Popper extends Component {
 
   static defaultProps = {
     component: 'div',
-    placement: 'bottom',
-    eventsEnabled: true,
-    modifiers: {},
   }
 
   state = {}
@@ -41,6 +38,7 @@ class Popper extends Component {
   componentDidUpdate(lastProps) {
     if (
       lastProps.placement !== this.props.placement ||
+      lastProps.positionFixed !== this.props.positionFixed ||
       lastProps.eventsEnabled !== this.props.eventsEnabled
     ) {
       this._destroyPopper()
@@ -91,7 +89,7 @@ class Popper extends Component {
   }
 
   _createPopper() {
-    const { placement, eventsEnabled } = this.props
+    const { placement, positionFixed, eventsEnabled } = this.props
     const modifiers = {
       ...this.props.modifiers,
       applyStyle: { enabled: false },
@@ -106,6 +104,7 @@ class Popper extends Component {
 
     this._popper = new PopperJS(this._getTargetNode(), this._node, {
       placement,
+      positionFixed,
       eventsEnabled,
       modifiers,
     })
@@ -164,6 +163,7 @@ class Popper extends Component {
       component,
       innerRef,
       placement,
+      positionFixed,
       eventsEnabled,
       modifiers,
       children,
@@ -172,7 +172,7 @@ class Popper extends Component {
 
     const popperRef = node => {
       this._node = node
-      if(node) {
+      if (node) {
         this._createPopper();
       } else {
         this._destroyPopper();
