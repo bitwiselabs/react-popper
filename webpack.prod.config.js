@@ -22,6 +22,12 @@ const externals = {
     commonjs: 'prop-types',
     amd: 'prop-types',
   },
+  'popper.js': {
+    root: 'PopperJS',
+    commonjs2: 'popper.js',
+    commonjs: 'popper.js',
+    amd: 'popper.js',
+  },
 }
 
 var config = {
