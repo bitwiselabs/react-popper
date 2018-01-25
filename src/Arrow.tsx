@@ -1,5 +1,4 @@
-import React, { Component, createElement } from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react';
 
 const Arrow = (props, context) => {
   const { component = 'span', innerRef, children, ...restProps } = props

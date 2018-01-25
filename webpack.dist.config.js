@@ -1,6 +1,5 @@
 var path = require('path')
 var webpack = require('webpack')
-var banner = require('./webpack.banner')
 var TARGET = process.env.TARGET || null
 
 const externals = {
@@ -31,7 +30,7 @@ const externals = {
 }
 
 var config = {
-  entry: './src/react-popper.js',
+  entry: './src/index.ts',
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: 'dist/',
@@ -41,9 +40,11 @@ var config = {
     libraryTarget: 'umd',
   },
   module: {
-    loaders: [{ test: /\.(js|jsx)/, loader: 'babel-loader' }],
+    loaders: [
+      // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+      { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+    ],
   },
-  plugins: [new webpack.BannerPlugin(banner)],
   resolve: {
     extensions: ['.js', '.jsx'],
   },
