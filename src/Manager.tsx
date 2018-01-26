@@ -1,18 +1,20 @@
-import React, { Component, createElement } from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react';
+import Popper from "popper.js";
 
-class Manager extends Component {
+export interface IManagerProps {
+ tag: string
+} 
+
+export class Manager extends React.Component<IManagerProps> {
   static childContextTypes = {
-    popperManager: PropTypes.object.isRequired,
-  }
-
-  static propTypes = {
-    tag: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+    popperManager: Popper
   }
 
   static defaultProps = {
     tag: 'div',
   }
+
+  private _targetNode: React.ReactNode;
 
   getChildContext() {
     return {
@@ -23,7 +25,7 @@ class Manager extends Component {
     }
   }
 
-  _setTargetNode = node => {
+  _setTargetNode = (node: React.ReactNode) => {
     this._targetNode = node
   }
 
@@ -33,12 +35,10 @@ class Manager extends Component {
 
   render() {
     const { tag, children, ...restProps } = this.props
-    if (tag !== false) {
-      return createElement(tag, restProps, children)
+    if (tag !== null) {
+      return React.createElement(tag, restProps, children)
     } else {
       return children
     }
   }
 }
-
-export default Manager
