@@ -14,7 +14,8 @@
         "forceConsistentCasingInFileNames": true,
         "strictNullChecks": true,
         "preserveConstEnums": true,
-        "importHelpers": true
+        "importHelpers": true,
+        "declaration": true
     },
     "include": [
         "./src/**/*.ts",

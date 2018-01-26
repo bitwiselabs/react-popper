@@ -8,14 +8,9 @@
 # NPM
 node_modules
 npm-debug.log
-dist
-lib
+*-lock.json
+.lock
 
-# General Files
-.sass-cache
-.hg
-.idea
-.svn
-.cache
-.project
-.tmp
+# Build output
+dist
+dist-example

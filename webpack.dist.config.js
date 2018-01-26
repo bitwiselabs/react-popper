@@ -34,8 +34,8 @@ var config = {
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: 'dist/',
-    filename: 'react-popper.js',
-    sourceMapFilename: 'react-popper.sourcemap.js',
+    filename: 'index.js',
+    sourceMapFilename: 'index.js.map',
     library: 'ReactPopper',
     libraryTarget: 'umd',
   },
@@ -48,22 +48,7 @@ var config = {
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
-  externals: externals,
-}
-
-if (TARGET === 'minify') {
-  config.output.filename = 'react-popper.min.js'
-  config.output.sourceMapFilename = 'react-popper.min.js'
-  config.plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-      mangle: {
-        except: ['React', 'ReactDOM', 'Popper', 'ReactPopper'],
-      },
-    })
-  )
+  externals: externals
 }
 
 module.exports = config
